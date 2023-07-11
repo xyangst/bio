@@ -4,6 +4,17 @@
 ## Installation after cloning the repository
 
 1. Setup virtual environment (optional)
+```bash
+python -m venv venv
+```
+windows:
+```bash
+venv\Scripts\Activate.ps1
+```
+unix:
+```bash
+source venv/bin/activate
+```
 2. Install dependencies:
 ```bash
 npm install
