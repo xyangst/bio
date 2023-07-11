@@ -15,7 +15,7 @@ apply migrations to sqlite db
 python src/manage.py migrate
 ```
 4 add Social medias
-sadly i did not get commands to work. a workaround is to copy the contents of `src\addSocialPlatformsToDB.py`, run `python manage.py` and paste in the code
+sadly i did not get commands to work. a workaround is to copy the contents of `src\addSocialPlatformsToDB.py`, run `python manage.py shell` and paste in the code
 ``````
 ## Run development server:
 
