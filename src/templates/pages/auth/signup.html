@@ -1,0 +1,36 @@
+<form class="tab-content" action="{% url 'signup' %}" method="post">
+  {% csrf_token %}
+  <div class="mb-4">
+    <input
+      class="bg-stone-900 focus:outline-none focus:border-primary border px-2 rounded-md py-1 w-full"
+      placeholder="Username"
+      type="text"
+      name="username"
+      id="username"
+    />
+  </div>
+  <div class="mb-4">
+    <input
+      class="bg-stone-900 focus:outline-none focus:border-primary border px-2 rounded-md py-1 w-full"
+      placeholder="Email"
+      type="email"
+      name="email"
+      id="signup"
+    />
+  </div>
+  <div class="mb-4">
+    <input
+      class="bg-stone-900 focus:outline-none focus:border-primary border px-2 rounded-md py-1 w-full"
+      placeholder="Password"
+      type="password"
+      name="password"
+    />
+  </div>
+  <div>
+    <input
+      type="submit"
+      class="w-full bg-primary rounded-md py-1 px-2"
+      value="Signup"
+    />
+  </div>
+</form>

@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}buried - Dashboard{% endblock %}
+{%block content %} {% load static%}
+<script src="{% static 'js/submitForm.js'%}"></script>
+<div class="flex justify-center px-4 md:px-24 animate-fade-in-right">
+  <div class="w-full max-w-md mt-16">
+    <div class="flex justify-between">
+      <a class="m-5 text-base hover:text-secondary" href="{% url 'home' %}"
+        >Home</a
+      >
+
+      <a class="m-5 text-base hover:text-secondary" href="{% url 'logout' %}"
+        >Logout</a
+      >
+    </div>
+
+    <div
+      class="flex justify-evenly mb-4 border py-3 rounded overflow-hidden bg-stone-800"
+    >
+      <button
+        class="tab-button rounded px-4 py-2 bg-primary transition duration-300 ease-in-out"
+        data-tab="customizeTab"
+      >
+        Customize
+      </button>
+      <button
+        class="tab-button rounded px-4 py-2 hover:bg-secondary transition duration-300 ease-in-out"
+        data-tab="socialsTab"
+      >
+        Socials
+      </button>
+      <button
+        class="tab-button rounded px-4 py-2 hover:bg-secondary transition duration-300 ease-in-out"
+        data-tab="musicTab"
+      >
+        Music
+      </button>
+      <button
+        class="tab-button rounded px-4 py-2 hover:bg-secondary transition duration-300 ease-in-out"
+        data-tab="miscTab"
+      >
+        Misc.
+      </button>
+    </div>
+
+    <div class="tab-content" data-tab="socialsTab" style="display: none">
+      {% include "pages/dashboard/socials.html" %}
+    </div>
+
+    <div class="tab-content" data-tab="customizeTab">
+      {% include "pages/dashboard/customize.html" %}
+    </div>
+    <div class="tab-content" data-tab="miscTab" style="display: none">
+      {% include "pages/dashboard/misc.html" %}
+    </div>
+    <div class="tab-content" data-tab="musicTab" style="display: none">
+      {% include "pages/dashboard/music.html" %}
+    </div>
+    <!-- Add more tab content here -->
+  </div>
+</div>
+{% endblock %}

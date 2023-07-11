@@ -1,0 +1,27 @@
+<form
+  method="POST"
+  id="music-form"
+  onsubmit="submitForm(event,'musicSubmit','/@api/update/music')"
+>
+  {% csrf_token %}
+  <div class="mb-4">
+    <label class="block text-sm font-bold mb-2" for="songLink">
+      Link to Song; (mp3 only )
+    </label>
+    <input
+      value="{{user.songLink}}"
+      class="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+      id="songLink"
+      type="text"
+      name="songLink"
+    />
+  </div>
+
+  <button
+    id="musicSubmit"
+    class="w-full bg-primary hover:bg-secondary font-bold py-2 px-4 rounded"
+    type="submit"
+  >
+    Update
+  </button>
+</form>

@@ -1,0 +1,28 @@
+<form
+  method="POST"
+  id="socials-form"
+  onsubmit="submitForm(event,'socialsSubmit','/@api/update/socials')"
+>
+  {% csrf_token %}
+  <button
+    id="socialsSubmit"
+    class="mb-4 w-full bg-primary hover:bg-secondary font-bold py-2 px-4 rounded"
+    type="submit"
+  >
+    Update
+  </button>
+  <div class="grid grid-cols-2 gap-2">
+    {% for platform in platforms %}
+    <div class="mb-2 w-max">
+      <i class="fa-brands w-6 fa-lg  {{ platform.platform.faClass }}"></i>
+      <input
+        value="{{ platform.social_user.name }}"
+        type="text"
+        class="w-36 border rounded py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+        placeholder="{{ platform.platform }}"
+        name="{{ platform.platform }}"
+      />
+    </div>
+    {% endfor %}
+  </div>
+</form>

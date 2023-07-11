@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block title%}buried - @{{username}}{% endblock %}
+{%block content %} {% load static %} {% if snowflakes %}
+<script src="{% static 'js/snowStorm.js'%}"></script>
+{% endif %}
+<style>
+    :root {
+    --custom-color: {{textColor}};
+  }
+</style>
+
+<script>
+  window.onload = function () {
+    const centerDiv = document.getElementById("profile");
+    centerDiv.classList.add("animate-top-center");
+  };
+  function copyToClipboard(text, faClass) {
+    const dummyInput = document.createElement("input");
+    document.body.appendChild(dummyInput);
+    dummyInput.value = text;
+    dummyInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummyInput);
+    const button = document.getElementById("copyButton-" + faClass);
+  }
+</script>
+{% if backgroundImage %}
+<div
+  class="flex justify-center h-screen bg-cover bg-no-repeat bg-center"
+  style="background-image: url({{ backgroundImage }})"
+>
+  {% else %}
+  <div
+    class="flex justify-center h-screen bg-cover bg-no-repeat bg-center"
+    style="
+      background-image: url(https://media.discordapp.net/attachments/1088177821093998682/1126924187945144351/2023-07-07_19-13-43-504_firefox.png);
+    "
+  >
+    {% endif %} {% if song %} {% include "pages/bio/audio.html" %} {% endif %}
+    <div class="mt-10">
+      <main
+        id="profile"
+        class="max-w-xs rounded-lg p-8 {% if showCard%} bg-stone-100 bg-opacity-10 {%endif%}"
+      >
+        <div class="flex justify-center">
+          {% if pfpImage %}
+          <img
+            src="{{ pfpImage }}"
+            class="w-32 h-32 rounded-full mb-4"
+            alt="Profile Picture"
+          />
+          {% else %}
+          <img
+            src="https://media.discordapp.net/attachments/1055919462668304416/1128406106918633582/defaultPFP.png?width=938&height=910"
+            class="w-32 h-32 rounded-full mb-4"
+            alt="Default Profile Picture"
+          />
+          {% endif %}
+        </div>
+        <div class="text-center txt opacity-40">
+          {%if views%}{{views}}<i class="fa-solid fa-eye"></i>{%endif%}
+          <span>@{{username}}</span>
+        </div>
+        <h2 class="txt text-xl text-center font-semibold mb-2">
+          {% if displayName %} {{displayName}} {% else %} {{ username }}
+          {%endif%}
+        </h2>
+        <div class="text-center">
+          {% for social in socials %} {% if social.platform.isCopy %}
+          <button
+            onclick="copyToClipboard('{{ social }}', '{{ social.platform.faClass }}')"
+          >
+            <i
+              id="copyButton-{{ forloop.counter }}"
+              class="hover:scale-125 fa-brands w-5 h-5 txt {{ social.platform.faClass }}"
+            ></i>
+          </button>
+          {% else %}
+          <a href="{{ social }}" target="_blank">
+            <i
+              class="fa-brands w-5 h-5 txt hover:scale-125 {{ social.platform.faClass }}"
+            ></i>
+          </a>
+          {% endif %} {% endfor %}
+        </div>
+        {% if bio %}
+        <p class="txt text-center break-words">{{ bio }}</p>
+        {% endif %}
+      </main>
+    </div>
+    <a
+      href="{% url 'home' %}"
+      class="fixed w-full left-0 bottom-0 text-center hover:underline"
+    >
+      <span class="bg-black bg-opacity-50 font-semibold rounded-t-xl p-1">
+        djangobio
+      </span>
+    </a>
+    {% endblock %}
+  </div>
+</div>

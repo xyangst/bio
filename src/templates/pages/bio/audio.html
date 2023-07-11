@@ -1,0 +1,51 @@
+<!-- main.html -->
+<audio id="audio" src="{{song}}" loop></audio>
+<div id="blurredPage" class="backdrop-blur-md fixed w-full h-full z-40"></div>
+<button id="playButton">
+  <i
+    class="bg-stone-950 hover:bg-stone-900 rounded-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-2 fas fa-volume-high z-50"
+  ></i>
+</button>
+<script>
+  // audio.js
+  document.addEventListener("DOMContentLoaded", function () {
+    let audio = document.getElementById("audio");
+    let playButton = document.getElementById("playButton");
+    let blurredPage = document.getElementById("blurredPage");
+
+    function togglePlay() {
+      if (audio.paused || audio.volume === 0) {
+        blurredPage.style.display = "none";
+
+        audio.play();
+        audio.volume = 0.5;
+
+        // Create the volume icon element
+        let volumeIcon = document.createElement("i");
+        volumeIcon.className =
+          "bg-opacity-50 bg-stone-950 rounded-full hover:bg-stone-900  fixed left-0 p-2 m-3 top-0 fas fa-volume-high";
+
+        // Clear the playButton contents
+        playButton.innerHTML = "";
+
+        // Append the volume icon element to the playButton
+        playButton.appendChild(volumeIcon);
+      } else {
+        audio.volume = 0;
+
+        // Create the mute icon element
+        let muteIcon = document.createElement("i");
+        muteIcon.className =
+          "bg-opacity-50  fixed left-0 p-2 m-3 top-0 bg-stone-950 hover:bg-stone-900 rounded-full fas fa-volume-mute";
+
+        // Clear the playButton contents
+        playButton.innerHTML = "";
+
+        // Append the mute icon element to the playButton
+        playButton.appendChild(muteIcon);
+      }
+    }
+
+    playButton.addEventListener("click", togglePlay);
+  });
+</script>

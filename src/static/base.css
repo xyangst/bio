@@ -1,0 +1,15 @@
+.txt {
+    color: var(--custom-color);
+}
+@keyframes slideInTop {
+0% {
+    transform: translateY(-100%);
+}
+100% {
+    transform: translateY(0);
+}
+}
+
+.animate-top-center {
+    animation: slideInTop 1s ease-out;
+}

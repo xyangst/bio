@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex h-screen justify-center items-center flex-col">
+  <a
+    href="{%url 'home'%}"
+    class="mb-4 animate-fade-in-right text-transparent bg-clip-text bg-gradient-to-r from-primary from-65% to-secondary text-xl font-extrabold text-center"
+  >
+    djangobio
+  </a>
+  <div class="animate-fade-in-right">
+    <ul
+      class="flex p-1 gap-1 mb-4 justify-between bg-stone-800 rounded-lg max-w-xs"
+    >
+      <a
+        id="login-tab"
+        class="text-center py-1 px-2 rounded-md bg-primary w-1/2"
+        href="#login"
+        >Login</a
+      >
+      <a
+        id="signup-tab"
+        class="text-center py-1 px-2 rounded-md w-1/2 hover:bg-stone-700"
+        href="#signup"
+        >Signup</a
+      >
+    </ul>
+
+    <div class="rounded-xl p-4 max-w-xs bg-stone-800">
+      <div id="login" class="tab-content">
+        {% include 'pages/auth/login.html' %}
+      </div>
+      <div id="signup" class="tab-content">
+        {% include 'pages/auth/signup.html' %}
+      </div>
+
+      {% if messages %}
+      <ul class="pt-3">
+        {% for message in messages %}
+        <li class="text-red-600">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get tab elements
+    let loginTab = document.getElementById("login-tab");
+    let signupTab = document.getElementById("signup-tab");
+
+    // Get tab content elements
+    let loginContent = document.getElementById("login");
+    let signupContent = document.getElementById("signup");
+
+    // Hide signup content by default
+    signupContent.style.display = "none";
+
+    // Add event listeners to tabs
+    loginTab.addEventListener("click", function (e) {
+      e.preventDefault();
+      loginTab.classList.add("bg-primary");
+      signupTab.classList.remove("bg-primary");
+      loginContent.style.display = "block";
+      signupContent.style.display = "none";
+    });
+
+    signupTab.addEventListener("click", function (e) {
+      e.preventDefault();
+      signupTab.classList.add("bg-primary");
+      loginTab.classList.remove("bg-primary");
+      signupContent.style.display = "block";
+      loginContent.style.display = "none";
+    });
+  });
+</script>
+
+{% endblock %}

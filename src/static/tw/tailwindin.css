@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  ::selection {
+    background-color: #6640FF; /* Replace with your desired background color */
+    color: #ffffff; /* Replace with your desired text color */}

@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex justify-center items-center px-4 pt-12 sm:px-6 text-center">
+  <div class="max-w-lg flex-col justify-center items-center">
+    <div>
+      {% if user.is_authenticated %}
+      <a
+        class="absolute top-0 right-0 m-5 text-base hover:text-secondary transition-all transform hover:scale-110"
+        href="{% url 'logout' %}"
+        >Logout</a
+      >
+      {% endif %}
+      <a
+        class="absolute top-0 left-0 m-5 text-base hover:text-secondary transition-all transform hover:scale-110"
+        href="{% url 'randomuser' %}"
+        >Random User</a
+      >
+
+      <a
+        class="animate-fade-in-right text-transparent bg-clip-text bg-gradient-to-r from-primary from-65% to-secondary text-5xl font-extrabold text-center"
+      >
+        djangobio
+      </a>
+    </div>
+
+    <div class="text-center my-6 animate-fade-in-right">
+      made with
+      <a
+        href="https://www.djangoproject.com/"
+        target="_blank"
+        class="text-primary transition-all hover:text-secondary"
+        >Django</a
+      >
+      and
+      <a
+        href="https://www.tailwindcss.com/"
+        target="_blank"
+        class="text-primary transition-all hover:text-secondary"
+        >TailwindCSS</a
+      >
+      for
+      <a
+        href="https://cs50.harvard.edu/web/2020/"
+        target="_blank"
+        class="text-primary transition-all hover:text-secondary"
+        >CS50W</a
+      >
+    </div>
+    <div class="mb-6 animate-fade-in-right">
+      {% if user.is_authenticated %}
+      <a
+        class="mt-4 text-lg text-primary transition-all hover:text-secondary"
+        href="{% url 'dashboard' %}"
+        >Dashboard</a
+      >
+      {% else %}
+      <a
+        class="mt-4 text-lg text-primary transition-all hover:text-secondary"
+        href="{% url 'login' %}"
+        >Log In</a
+      >
+      {% endif %}
+    </div>
+    <div class="animate-fade-in-right">
+      <div class="grid grid-cols-3 grid-flow-row gap-8">
+        <div class="text-center">
+          <i class="fab fa-instagram text-4xl mb-4 text-primary"></i>
+          <h3 class="text-lg font-semibold">Link your Socials</h3>
+          <p class="text-gray-600">
+            Over 50 Social Media Sites to choose from.
+          </p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-chart-line text-4xl mb-4 text-primary"></i>
+          <h3 class="text-lg font-semibold">Boost Your Presence</h3>
+          <p class="text-gray-600">Share your own personal site!</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-shield-alt text-4xl mb-4 text-primary"></i>
+          <h3 class="text-lg font-semibold">Privacy Focused</h3>
+          <p class="text-gray-600">
+            We don't share any of your data. Pinky Promise?
+          </p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-music text-4xl mb-4 text-secondary"></i>
+          <h3 class="text-lg font-semibold">Music</h3>
+          <p class="text-gray-600">
+            Add your music! Please only use copyright free songs.
+          </p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-globe text-4xl mb-4 text-primary"></i>
+          <h3 class="text-lg font-semibold">No Deployed Version</h3>
+          <p class="text-gray-600">This is a pure testing project!</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-file text-4xl mb-4 text-primary"></i>
+          <h3 class="text-lg font-semibold">No File Uploading</h3>
+          <p class="text-gray-600">Did not find an easy way to add this.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

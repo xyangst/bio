@@ -1,0 +1,96 @@
+<p class="font-bold text-3xl">
+  Welcome
+  <a
+    class="text-primary hover:text-secondary"
+    target="_blank"
+    href="{% url 'bio' user %}"
+    >{{ user }}</a
+  >!
+</p>
+<p>{{user.views}}<i class="fa-solid fa-eye"></i></p>
+
+<form
+  id="profile-form"
+  method="POST"
+  class="max-w-xl"
+  onsubmit="submitForm(event,'customizeSubmit','/@api/update/customize')"
+>
+  {% csrf_token %}
+  <!-- Display Name -->
+  <div class="mb-4">
+    <label class="block text-sm font-bold mb-2" for="displayName">
+      Display Name
+    </label>
+    <input
+      value="{{user.displayName}}"
+      class="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+      id="displayName"
+      type="text"
+      name="displayName"
+    />
+  </div>
+
+  <!-- Profile Picture URL -->
+  <div class="mb-4">
+    <label class="block text-sm font-bold mb-2" for="pfpImage">
+      Profile Picture URL
+    </label>
+    <input
+      value="{{user.pfpImage}}"
+      class="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+      id="pfpImage"
+      type="url"
+      name="pfpImage"
+    />
+  </div>
+
+  <!-- Bio -->
+  <div class="mb-4">
+    <label class="block text-sm font-bold mb-2" for="bio"> Bio </label>
+    <textarea
+      class="resize-none border h-24 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+      id="bio"
+      name="bio"
+    >
+{{request.user.bio}}</textarea
+    >
+  </div>
+
+  <!-- Background Image URL -->
+  <div class="mb-4">
+    <label class="block text-sm font-bold mb-2" for="backgroundImage">
+      Background Image URL
+    </label>
+    <input
+      value="{{user.backgroundImage}}"
+      class="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+      id="backgroundImage"
+      type="url"
+      name="backgroundImage"
+    />
+  </div>
+  <!-- Background Image URL -->
+  <div class="mb-4">
+    <label class="block text-sm font-bold mb-2" for="backgroundImage">
+      Text Color (recommended to not mess w)
+    </label>
+    <input
+      value="{{user.textColor}}"
+      class="border rounded py-2 px-3 leading-tight focus:outline-none focus:border-primary bg-stone-900"
+      id="textColor"
+      type="color"
+      name="textColor"
+    />
+  </div>
+
+  <!-- Submit Button -->
+  <div class="flex items-center justify-between">
+    <button
+      id="customizeSubmit"
+      class="w-full bg-primary hover:bg-secondary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      type="submit"
+    >
+      Update
+    </button>
+  </div>
+</form>
